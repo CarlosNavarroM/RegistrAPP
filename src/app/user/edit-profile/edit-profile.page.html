@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar Perfil</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-list>
+      <ion-item lines="full">
+        <ion-avatar slot="start" class="profile-avatar">
+          <img alt="Foto de Perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <ion-label>Foto de Perfil</ion-label>
+        <ion-button slot="end" (click)="changeProfilePicture()">Cambiar</ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Número de Teléfono</ion-label>
+        <ion-input type="tel" value="+123456789"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked">Correo Electrónico</ion-label>
+        <ion-input type="email" value="usuarioprueba&#64;user.com"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Contraseña Actual</ion-label>
+        <ion-input type="password" placeholder="Introduce tu contraseña actual"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Nueva Contraseña</ion-label>
+        <ion-input type="password" placeholder="Introduce una nueva contraseña"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" type="submit" color="primary" class="ion-margin-top">
+      Guardar Cambios
+    </ion-button>
+  </form>
+</ion-content>
