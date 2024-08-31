@@ -22,12 +22,11 @@ export class LoginPage implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       const email = this.loginForm.get('email')?.value;
-
-      // Simulación de la verificación del rol basado en el correo electrónico
+  
       if (email.includes('docente')) {
-        this.router.navigate(['/home-docente']); // Redirigir a la vista del docente
+        this.router.navigate(['/home-docente']); // Redirige correctamente al home del docente
       } else {
-        this.router.navigate(['/home-alumno']); // Redirigir a la vista del alumno
+        this.router.navigate(['/home-alumno']); // Redirige correctamente al home del alumno
       }
     }
   }
