@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Iniciar sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="login-container">
+      <ion-item lines="none" class="animate__animated animate__fadeInDown">
+        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+        <small *ngIf="loginForm.get('email')?.errors?.['required']">El correo es requerido.</small>
+        <small *ngIf="loginForm.get('email')?.errors?.['email']">El correo no es válido.</small>
+      </ion-text>
+      
+      <ion-item lines="none" class="animate__animated animate__fadeInDown animate__delay-1s">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+        <small *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es requerida.</small>
+        <small *ngIf="loginForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</small>
+      </ion-text>
+      
+      <ion-button expand="block" color="primary" class="animate__animated animate__fadeInUp animate__delay-2s" type="submit" [disabled]="loginForm.invalid">
+        Iniciar sesión
+      </ion-button>
+
+      <ion-button expand="block" fill="clear" class="animate__animated animate__fadeInUp animate__delay-2s" routerLink="/reset-password">
+        ¿Olvidaste tu contraseña?
+      </ion-button>
+      
+      <p class="register-message animate__animated animate__fadeInUp animate__delay-3s">
+        ¿No tienes una cuenta? <a routerLink="/register">Crear una cuenta</a>
+      </p>
+    </div>
+  </form>
+</ion-content>
