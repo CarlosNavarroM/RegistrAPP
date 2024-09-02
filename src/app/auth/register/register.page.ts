@@ -29,13 +29,7 @@ export class RegisterPage implements OnInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      const email = this.registerForm.get('email')?.value;
-  
-      if (email.includes('docente')) {
-        this.router.navigate(['/home-docente']); 
-      } else {
-        this.router.navigate(['/home-alumno']); 
-      }
+      this.router.navigate(['/login']);
     }
   }
 }
