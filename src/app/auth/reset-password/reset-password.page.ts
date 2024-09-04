@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reset-password',
@@ -10,7 +10,10 @@ import { Router } from '@angular/router';
 export class ResetPasswordPage implements OnInit {
   resetPasswordForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router:Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private toastController: ToastController
+  ) { }
 
   ngOnInit() {
     this.resetPasswordForm = this.fb.group({
@@ -18,11 +21,18 @@ export class ResetPasswordPage implements OnInit {
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.resetPasswordForm.valid) {
       const email = this.resetPasswordForm.get('email')?.value;
       console.log(email);
+      
+      // Mostrar el Toast
+      const toast = await this.toastController.create({
+        message: 'Revisa tu bandeja de entrada para continuar con el restablecimiento de la contraseña.',
+        duration: 3000,
+        position: 'bottom'
+      });
+      toast.present();
     }
   }
-
 }
