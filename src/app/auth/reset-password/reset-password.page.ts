@@ -26,7 +26,6 @@ export class ResetPasswordPage implements OnInit {
       const email = this.resetPasswordForm.get('email')?.value;
       console.log(email);
       
-      // Mostrar el Toast
       const toast = await this.toastController.create({
         message: 'Revisa tu bandeja de entrada para continuar con el restablecimiento de la contraseña.',
         duration: 3000,

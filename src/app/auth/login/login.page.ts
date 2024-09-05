@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/models/user.model';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -8,26 +10,44 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  loginForm!: FormGroup;
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]), 
+    password: new FormControl('', [Validators.required]),
+  });
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+fireBaseSvc = inject(FirebaseService);
+utilsSvc = inject(UtilsService);
 
   ngOnInit() {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
   }
 
-  onSubmit() {
+  async submit() {
     if (this.loginForm.valid) {
-      const email = this.loginForm.get('email')?.value;
-  
-      if (email.includes('docente')) {
-        this.router.navigate(['/home-docente']); // Redirige correctamente al home del docente
-      } else {
-        this.router.navigate(['/home-alumno']); // Redirige correctamente al home del alumno
-      }
+
+      const loading = await this.utilsSvc.loading();
+      await loading.present();
+
+      this.fireBaseSvc.signIn(this.loginForm  .value as User).then(res => {
+        console.log('Usuario autenticado:', res.user);
+        const email = this.loginForm.get('email')?.value;
+        if (email && email.includes('@docente')) { 
+          this.utilsSvc.routerLink('/home-docente');
+        } else {
+          this.utilsSvc.routerLink('/home-alumno');
+        }
+
+      }).catch(err => {
+        console.error('Error al autenticar usuario:', err);
+        this.utilsSvc.presentToast({ 
+          message: 'Error al autenticar usuario', 
+          duration: 2000,
+          color: 'danger',
+          position:'middle',
+          icon: 'close-circle-outline' 
+        });
+      }).finally(() => {
+        loading.dismiss();
+      });
     }
   }
 }
