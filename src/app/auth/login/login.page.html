@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
     <div class="login-container">
       <ion-item lines="none" class="animate__animated animate__fadeInDown">
         <ion-label position="floating">Correo Electrónico</ion-label>
@@ -22,7 +22,6 @@
       </ion-item>
       <ion-text color="danger" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
         <small *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es requerida.</small>
-        <small *ngIf="loginForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</small>
       </ion-text>
       
       <ion-button expand="block" color="primary" class="animate__animated animate__fadeInUp animate__delay-2s" type="submit" [disabled]="loginForm.invalid">
