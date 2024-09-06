@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalles del Código QR</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home-docente"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="qr-container">
+    <h2>Código de Asistencia</h2>
+    <p>Sección: {{ seccion }}</p>
+    <p>Fecha: {{ fecha }}</p>
+    
+    <!-- Mostrar el código QR -->
+    <div *ngIf="codigoQR">
+      <qrcode [qrdata]="codigoQR" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
+  </div>
+</ion-content>

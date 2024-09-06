@@ -39,8 +39,8 @@ const routes: Routes = [
     loadChildren: () => import('./attendance/attendance-history/attendance-history.module').then(m => m.AttendanceHistoryPageModule)
   },
   {
-    path: 'logout',
-    loadChildren: () => import('./logout/logout.module').then(m => m.LogoutPageModule)
+    path: 'qr-view',
+    loadChildren: () => import('./qr-view/qr-view.module').then(m => m.QrViewPageModule)
   },
   {
     path: 'attendance-reports',
@@ -63,6 +63,10 @@ const routes: Routes = [
   {
     path: 'home-alumno',
     loadChildren: () => import('./home-alumno/home-alumno.module').then( m => m.HomeAlumnoPageModule)
+  },
+  {
+    path: 'qr-view',
+    loadChildren: () => import('./qr-view/qr-view.module').then( m => m.QrViewPageModule)
   },
 
  
