@@ -15,7 +15,7 @@ import { SharedModule } from '../shared/shared.module';
     IonicModule,
     HomeDocentePageRoutingModule,
     SharedModule,
-    QRCodeModule, // Usa este módulo en lugar de NgxQRCodeModule
+    QRCodeModule, 
   ],
   declarations: [HomeDocentePage]
 })

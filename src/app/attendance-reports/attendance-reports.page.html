@@ -1,13 +1,32 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>attendance-reports</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Reportes de Asistencia</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">attendance-reports</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="reports-container">
+    <h2>Historial de asistencia por curso</h2>
+
+    <!-- Acordeón para mostrar cursos del docente -->
+    <ion-list>
+      <ion-item-divider button (click)="toggleSection(0)">
+        <ion-label>Historial de asistencia por curso</ion-label>
+        <ion-icon [name]="expanded ? 'chevron-up-outline' : 'chevron-down-outline'" slot="end"></ion-icon>
+      </ion-item-divider>
+
+      <!-- Lista de cursos -->
+      <ng-container *ngIf="expanded">
+        <ion-item *ngFor="let curso of cursos" (click)="goToAttendanceReports(curso.id)">
+          <ion-label>{{ curso.nombre }}</ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+      </ng-container>
+    </ion-list>
+  </div>
 </ion-content>
