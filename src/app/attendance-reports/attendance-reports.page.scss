@@ -1,27 +1,54 @@
 .reports-container {
-    padding: 20px;
-  }
-  ion-button {
-    z-index: 11;  /* Asegura que el botón esté por encima de todos los demás elementos */
-  }
+  padding: 16px;
+  text-align: center;
+
   h2 {
-    font-size: 24px;
+    color: var(--ion-color-primary);
     font-weight: bold;
     margin-bottom: 20px;
   }
-  
-  ion-item {
-    --background: #fff;
-    border-radius: 8px;
-    margin: 10px 0;
+
+  .student-info {
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: var(--ion-color-primary);
+    }
+
+    .attendance-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .attendance-record {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .attendance-date {
+      color: white;
+      background-color: var(--ion-color-dark);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-right: 5px;
+    }
+
+    .attendance-status {
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .present {
+      color: white;
+      background-color: green;
+    }
+
+    .absent {
+      color: white;
+      background-color: red;
+    }
   }
-  
-  ion-label h2 {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  ion-label p {
-    font-size: 16px;
-  }
-  
+}

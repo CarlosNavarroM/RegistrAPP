@@ -1,31 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>RegistrAPP</ion-title>
-    <ion-buttons slot="end"></ion-buttons>
+    <ion-title>Bienvenido, Docente</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="docente-container">
-    <h2>Generar un código de asistencia</h2>
-    <p>Muestra a los estudiantes el código para que puedan registrarse en la clase.</p>
+    <h2>Clases actuales</h2>
+    <p>Seleccione una clase para ver el informe de asistencia o generar un código QR.</p>
 
-    <!-- Botón para generar el código QR y redirigir a la nueva página -->
-    <ion-button expand="block" color="primary" (click)="generarCodigo()">Generar código</ion-button>
-
-    <h3>Informes de asistencia</h3>
+    <!-- Lista de clases del docente -->
     <ion-list>
-      <ion-item>
-        <ion-label>Clase de 4to grado</ion-label>
-        <p>Asistencia del lunes, 2 de enero</p>
-        <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
-      </ion-item>
-      <ion-item>
-        <ion-label>Clase de 4to grado</ion-label>
-        <p>Asistencia del martes, 3 de enero</p>
-        <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+      <ion-item *ngFor="let curso of cursos" (click)="goToCourseReport(curso)">
+        <ion-label>
+          <h3>{{ curso.nombre }}</h3>
+          <p>Última asistencia: {{ curso.asistencias[curso.asistencias.length - 1]?.fecha }}</p>
+        </ion-label>
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
       </ion-item>
     </ion-list>
+
+    <h3>Generar código de asistencia</h3>
+    <ion-button expand="block" color="primary" (click)="generarCodigo()">Generar código QR</ion-button>
   </div>
 
   <app-tabs></app-tabs>
