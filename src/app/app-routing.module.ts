@@ -52,7 +52,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',  // Ahora redirige a 'home' en lugar de 'login'
+    redirectTo: 'home',  // Cambia esta redirección según tus necesidades
     pathMatch: 'full'
   }
 ];

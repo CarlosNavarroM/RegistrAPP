@@ -25,6 +25,5 @@ export class TabsComponent implements OnDestroy {
 
   ngOnDestroy() {
     console.log('TabsComponent ha sido destruido');
-    
   }
 }
