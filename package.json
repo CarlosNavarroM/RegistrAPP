@@ -9,13 +9,13 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
-    "@capacitor-firebase/firestore": "^6.1.0",  // Desde registro
-    "@capacitor-community/barcode-scanner": "^4.0.1",  // Desde main
-    "@capacitor/core": "^6.1.2",  // Unificación de versiones
+    "@capacitor-firebase/firestore": "^6.1.0",
+    "@capacitor/barcode-scanner": "^1.0.1",
+    "@capacitor/core": "^6.1.2",
     "@ionic/angular": "^8.0.0",
-    "firebase": "^10.13.1",  // Desde registro
-    "angularx-qrcode": "^18.0.1",  // Desde main
-    "html5-qrcode": "^2.3.8",  // Desde main
+    "angularx-qrcode": "^18.0.1",
+    "firebase": "^10.13.1",
+    "html5-qrcode": "^2.3.8",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
