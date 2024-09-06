@@ -2,7 +2,6 @@
   <ion-toolbar>
     <ion-title>RegistrAPP</ion-title>
     <ion-buttons slot="end">
-     
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -11,8 +10,15 @@
   <div class="docente-container">
     <h2>Generar un código de asistencia</h2>
     <p>Muestra a los estudiantes el código para que puedan registrarse en la clase.</p>
-    <ion-button expand="block" color="primary">Generar código</ion-button>
     
+    <!-- Botón para generar el código -->
+    <ion-button expand="block" color="primary" (click)="generarCodigo()">Generar código</ion-button>
+
+    <!-- mostrar el código QR si está disponible -->
+    <div *ngIf="codigoQR">
+      <qrcode [qrdata]="codigoQR" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
+
     <h3>Informes de asistencia</h3>
     <ion-list>
       <ion-item>
@@ -27,5 +33,7 @@
       </ion-item>
     </ion-list>
   </div>
+  
+
   <app-tabs></app-tabs>
 </ion-content>

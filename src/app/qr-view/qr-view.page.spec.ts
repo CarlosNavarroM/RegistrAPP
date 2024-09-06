@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LogoutPage } from './logout.page';
+import { QrViewPage } from './qr-view.page';
 
-describe('LogoutPage', () => {
-  let component: LogoutPage;
-  let fixture: ComponentFixture<LogoutPage>;
+describe('QrViewPage', () => {
+  let component: QrViewPage;
+  let fixture: ComponentFixture<QrViewPage>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LogoutPage);
+    fixture = TestBed.createComponent(QrViewPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

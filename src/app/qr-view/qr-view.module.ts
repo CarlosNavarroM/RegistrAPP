@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { QRCodeModule } from 'angularx-qrcode';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LogoutPageRoutingModule } from './logout-routing.module';
+import { QrViewPageRoutingModule } from './qr-view-routing.module';
 
-import { LogoutPage } from './logout.page';
+import { QrViewPage } from './qr-view.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LogoutPageRoutingModule
+    QrViewPageRoutingModule,
+    QRCodeModule
   ],
-  declarations: [LogoutPage]
+  declarations: [QrViewPage]
 })
-export class LogoutPageModule {}
+export class QrViewPageModule {}
