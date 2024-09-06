@@ -9,10 +9,13 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
-    "@capacitor-firebase/firestore": "^6.1.0",
-    "@capacitor/core": "6.1.2",
+    "@capacitor-firebase/firestore": "^6.1.0",  // Desde registro
+    "@capacitor-community/barcode-scanner": "^4.0.1",  // Desde main
+    "@capacitor/core": "^6.1.2",  // Unificación de versiones
     "@ionic/angular": "^8.0.0",
-    "firebase": "^10.13.1",
+    "firebase": "^10.13.1",  // Desde registro
+    "angularx-qrcode": "^18.0.1",  // Desde main
+    "html5-qrcode": "^2.3.8",  // Desde main
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -28,7 +31,7 @@
     "@angular/cli": "^18.0.0",
     "@angular/compiler-cli": "^18.0.0",
     "@angular/language-service": "^18.0.0",
-    "@capacitor/cli": "6.1.2",
+    "@capacitor/cli": "^6.1.2",
     "@ionic/angular-toolkit": "^11.0.1",
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",

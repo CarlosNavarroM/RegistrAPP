@@ -1,0 +1,27 @@
+.alumno-container {
+    padding: 20px;
+    position: relative;  /* Asegura que se respete la jerarquía de elementos */
+    z-index: 10;  /* Asegura que el contenedor esté por encima de otros elementos */
+  }
+  
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  h3 {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  
+  ion-item {
+    --background: #fff;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  
+  ion-button {
+    z-index: 11;  /* Asegura que el botón esté por encima de todos los demás elementos */
+    margin-top: 20px;
+  }
+  

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -8,17 +8,20 @@ import { Router } from '@angular/router';
 })
 export class TabsComponent {
 
-  constructor(private router: Router) {}
+  constructor(private navCtrl: NavController) {}
 
+  // Navega a la página 'home-docente' y reemplaza la vista actual (se destruye al salir)
   navigateToHome() {
-    this.router.navigate(['/home-docente']);
+    this.navCtrl.navigateRoot(['/home-docente']);
   }
 
+  // Navega a la página 'profile' y reemplaza la vista actual
   navigateToProfile() {
-    this.router.navigate(['/profile']);
+    this.navCtrl.navigateRoot(['/profile']);
   }
 
+  // Navega a la página 'scan-qr' y reemplaza la vista actual
   navigateToQR() {
-    this.router.navigate(['/scan-qr']);
+    this.navCtrl.navigateRoot(['/scan-qr']);
   }
 }

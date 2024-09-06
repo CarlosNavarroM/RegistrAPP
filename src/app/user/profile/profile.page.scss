@@ -4,6 +4,8 @@ ion-content {
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative; /* Asegura que el contenedor respete la jerarquía */
+  z-index: 1; /* Asegura que el contenido esté por encima de otros elementos */
 }
 
 .profile-container {
@@ -11,6 +13,8 @@ ion-content {
   margin: auto;
   padding: 20px;
   text-align: center;
+  position: relative; /* Asegura que el perfil no se superponga con otros elementos */
+  z-index: 2; /* Posiciona este contenedor por encima del fondo */
 }
 
 .profile-avatar {
@@ -35,10 +39,14 @@ ion-button {
   margin-top: 10px;
   margin-bottom: 20px;
   --border-radius: 10px;
+  position: relative;
+  z-index: 3; /* Asegura que el botón esté por encima de todos los demás elementos */
 }
 
 ion-list {
   --background: transparent;
+  position: relative;
+  z-index: 1; /* Listas y elementos dentro de la jerarquía */
 }
 
 ion-item {
@@ -47,6 +55,8 @@ ion-item {
   --background-activated: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   margin-bottom: 10px;
+  position: relative;
+  z-index: 2; /* Asegura que los ítems no queden debajo de otros elementos */
 }
 
 ion-label {

@@ -10,10 +10,10 @@ const routes: Routes = [
     path: 'home-docente',
     loadChildren: () => import('./home-docente/home-docente.module').then(m => m.HomeDocentePageModule)
   },
- {
-   path: 'home-alumno',
-   loadChildren: () => import('./home-alumno/home-alumno.module').then(m => m.HomeAlumnoPageModule)
- },
+  {
+    path: 'home-alumno',
+    loadChildren: () => import('./home-alumno/home-alumno.module').then(m => m.HomeAlumnoPageModule)
+  },
   {
     path: 'login',
     loadChildren: () => import('./auth/login/login.module').then(m => m.LoginPageModule)
@@ -39,8 +39,8 @@ const routes: Routes = [
     loadChildren: () => import('./attendance/attendance-history/attendance-history.module').then(m => m.AttendanceHistoryPageModule)
   },
   {
-    path: 'logout',
-    loadChildren: () => import('./logout/logout.module').then(m => m.LogoutPageModule)
+    path: 'qr-view',
+    loadChildren: () => import('./qr-view/qr-view.module').then(m => m.QrViewPageModule)
   },
   {
     path: 'attendance-reports',
@@ -52,20 +52,9 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',  // Ahora redirige a 'home' en lugar de 'login'
+    redirectTo: 'home',  // Cambia esta redirección según tus necesidades
     pathMatch: 'full'
-  },
-
-  {
-    path: 'home-docente',
-    loadChildren: () => import('./home-docente/home-docente.module').then( m => m.HomeDocentePageModule)
-  },
-  {
-    path: 'home-alumno',
-    loadChildren: () => import('./home-alumno/home-alumno.module').then( m => m.HomeAlumnoPageModule)
-  },
-
- 
+  }
 ];
 
 @NgModule({
