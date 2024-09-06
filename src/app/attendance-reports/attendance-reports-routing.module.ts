@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { AttendanceReportsPage } from './attendance-reports.page';
+import { RouterModule, Routes } from '@angular/router';
+import { AttendanceReportsPage } from './attendance-reports.page';  // Asegúrate de importar el componente, no el módulo
 
 const routes: Routes = [
   {
     path: '',
-    component: AttendanceReportsPage
+    component: AttendanceReportsPage,  // Usa el componente
   }
 ];
 
