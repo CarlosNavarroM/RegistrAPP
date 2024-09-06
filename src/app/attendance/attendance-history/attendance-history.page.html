@@ -1,13 +1,44 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>attendance-history</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Historial de Asistencia</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">attendance-history</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="attendance-container">
+    <!-- Muestra el nombre de la clase seleccionada solo una vez -->
+    <h2 *ngIf="selectedClass">{{ selectedClass }}</h2>
+
+    <!-- Filtro por clase -->
+    <ion-item>
+      <ion-label>Clases</ion-label>
+      <ion-select (ionChange)="filterAttendance($event)" placeholder="Selecciona una clase">
+        <ion-select-option *ngFor="let class of classes" [value]="class">{{ class }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Lista filtrada de asistencias -->
+    <ion-list *ngIf="filteredAttendances.length > 0; else noAttendances">
+      <ion-item *ngFor="let attendance of filteredAttendances">
+        <ion-label>
+          <p>{{ attendance.date }}</p> <!-- Solo muestra la fecha -->
+        </ion-label>
+        <ion-icon [name]="attendance.status === 'Presente' ? 'checkmark-circle' : 'close-circle'" 
+                  [color]="attendance.status === 'Presente' ? 'success' : 'danger'" slot="end">
+        </ion-icon>
+      </ion-item>
+    </ion-list>
+
+    <!-- Mensaje si no hay asistencias -->
+    <ng-template #noAttendances>
+      <ion-item>
+        <ion-label>No hay registros de asistencia para esta clase.</ion-label>
+      </ion-item>
+    </ng-template>
+  </div>
 </ion-content>

@@ -2,13 +2,13 @@
   <ion-toolbar>
     <ion-title>Editar Perfil</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="/home-alumno"></ion-back-button> <!-- Botón para volver -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form>
+  <form (ngSubmit)="saveChanges()">
     <ion-list>
       <ion-item lines="full">
         <ion-avatar slot="start" class="profile-avatar">
@@ -22,7 +22,7 @@
         <ion-label position="stacked">Número de Teléfono</ion-label>
         <ion-input type="tel" value="+123456789"></ion-input>
       </ion-item>
-      
+
       <ion-item>
         <ion-label position="stacked">Correo Electrónico</ion-label>
         <ion-input type="email" value="usuarioprueba&#64;user.com"></ion-input>

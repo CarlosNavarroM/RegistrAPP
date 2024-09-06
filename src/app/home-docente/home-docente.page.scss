@@ -1,7 +1,5 @@
-.docente-container {
-    padding: 20px;
-  }
-  
+
+
   h2 {
     font-size: 24px;
     font-weight: bold;
@@ -17,4 +15,13 @@
     border-radius: 10px;
     margin-top: 10px;
   }
+  .docente-container {
+    padding: 20px;
+    position: relative;  /* Asegura que se respete la jerarquía de elementos */
+    z-index: 10;  /* Asegura que el contenedor esté por encima de otros elementos */
+  }
+  
+ ion-button {
+    z-index: 11;  /* Asegura que el botón esté por encima de todos los demás elementos */
+  } 
   

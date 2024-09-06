@@ -1,13 +1,55 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>attendance-reports</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Reportes de Asistencia de Alumnos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">attendance-reports</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="reports-container">
+    <h2>Historial de Asistencia por Curso</h2>
+    
+    <!-- Filtro por curso -->
+    <ion-item>
+      <ion-label>Cursos</ion-label>
+      <ion-select (ionChange)="filterAttendance($event)" placeholder="Selecciona un curso">
+        <ion-select-option *ngFor="let curso of cursos" [value]="curso">{{ curso.nombre }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Lista de asistencias por alumno -->
+    <ng-container *ngIf="filteredAttendance.length > 0; else noAttendance">
+      <ion-list>
+        <ion-item-divider color="primary">
+          <ion-label>Asistencia del curso: {{ selectedCourse?.nombre }}</ion-label>
+        </ion-item-divider>
+        
+        <!-- Lista de alumnos y sus asistencias -->
+        <ion-item *ngFor="let alumno of filteredAttendance">
+          <ion-label class="student-info">
+            <h3>{{ alumno.nombre }}</h3>
+            <div class="attendance-details">
+              <span *ngFor="let asistencia of alumno.asistencias" class="attendance-record">
+                <span class="attendance-date">{{ asistencia.fecha }}</span>:
+                <span class="attendance-status" [ngClass]="asistencia.estado === 'Presente' ? 'present' : 'absent'">
+                  {{ asistencia.estado }}
+                </span>
+              </span>
+            </div>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+
+    <!-- Mensaje si no hay asistencias -->
+    <ng-template #noAttendance>
+      <ion-item>
+        <ion-label>No hay registros de asistencia para este curso.</ion-label>
+      </ion-item>
+    </ng-template>
+  </div>
 </ion-content>
