@@ -1,5 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -7,23 +6,22 @@ import { NavController } from '@ionic/angular';
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss'],
 })
-export class TabsComponent implements OnDestroy {
+export class TabsComponent {
 
-  constructor(private router: Router, private navCtrl: NavController) {}
+  constructor(private navCtrl: NavController) {}
 
+  // Navega a la página 'home-docente' y reemplaza la vista actual (se destruye al salir)
   navigateToHome() {
-    this.router.navigate(['/home-docente']);
+    this.navCtrl.navigateRoot(['/home-docente']);
   }
 
+  // Navega a la página 'profile' y reemplaza la vista actual
   navigateToProfile() {
-    this.router.navigate(['/profile']);
+    this.navCtrl.navigateRoot(['/profile']);
   }
 
+  // Navega a la página 'scan-qr' y reemplaza la vista actual
   navigateToQR() {
-    this.router.navigate(['/scan-qr']);
-  }
-
-  ngOnDestroy() {
-    console.log('TabsComponent ha sido destruido');
+    this.navCtrl.navigateRoot(['/scan-qr']);
   }
 }
