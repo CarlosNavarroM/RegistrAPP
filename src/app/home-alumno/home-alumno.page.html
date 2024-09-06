@@ -1,15 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Home Alumno</ion-title>
+    <ion-title>Bienvenido, Estudiante</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- Contenido de Home Alumno -->
-  <div class="content">
-    <p>Bienvenido, estudiante. Aquí puedes escanear tu código QR o ver tu perfil.</p>
-  </div>
-</ion-content>
+  <div class="alumno-container">
+    <h2>Opciones</h2>
+    <p>Escanea tu código QR para registrarte en la clase o revisa tu historial de asistencia.</p>
 
-<!-- Incluye el TabsComponent -->
-<app-tabs></app-tabs>
+    <!-- Botón para escanear el código QR -->
+    <ion-button expand="block" color="primary" (click)="escanearCodigoQR()">
+      Escanear Código QR
+    </ion-button>
+
+    <!-- Enlace al historial de asistencia -->
+    <ion-button expand="block" color="secondary" (click)="irAlHistorialAsistencia()">
+      Ver Historial de Asistencia
+    </ion-button>
+  </div>
+  
+  <!-- Incluye el TabsComponent -->
+  <app-tabs></app-tabs>
+</ion-content>
