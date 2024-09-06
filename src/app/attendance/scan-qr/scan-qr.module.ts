@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared.module'; // Módulo compartido de la aplicación
 import { IonicModule } from '@ionic/angular';
+import { SharedModule } from 'src/app/shared/shared.module';
 
-import { ScanQrPageRoutingModule } from './scan-qr-routing.module'; // Enrutamiento de la página
-
-import { ScanQrPage } from './scan-qr.page'; // Componente de la página
+import { ScanQrPageRoutingModule } from './scan-qr-routing.module';
+import { ScanQrPage } from './scan-qr.page';
 
 @NgModule({
   imports: [
-    CommonModule,          // Módulo Angular común
-    FormsModule,           // Soporte para formularios en Angular
-    IonicModule,           // Funcionalidades de Ionic (UI, navegación, etc.)
-    ScanQrPageRoutingModule, // Rutas específicas de la página
-    SharedModule           // Módulo compartido que incluye componentes o servicios reutilizables
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    ScanQrPageRoutingModule,
+    SharedModule
   ],
-  declarations: [ScanQrPage] // Declaración del componente de la página
+  declarations: [ScanQrPage],
+  exports: [ScanQrPage]
 })
 export class ScanQrPageModule {}
