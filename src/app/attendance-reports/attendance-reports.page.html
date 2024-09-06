@@ -30,12 +30,15 @@
         
         <!-- Lista de alumnos y sus asistencias -->
         <ion-item *ngFor="let alumno of filteredAttendance">
-          <ion-label>
-            {{ alumno.nombre }}
+          <ion-label class="student-info">
+            <h3>{{ alumno.nombre }}</h3>
             <div class="attendance-details">
-              <ion-badge *ngFor="let asistencia of alumno.asistencias" [color]="asistencia.estado === 'Presente' ? 'success' : 'danger'">
-                {{ asistencia.fecha }}: {{ asistencia.estado }}
-              </ion-badge>
+              <span *ngFor="let asistencia of alumno.asistencias" class="attendance-record">
+                <span class="attendance-date">{{ asistencia.fecha }}</span>:
+                <span class="attendance-status" [ngClass]="asistencia.estado === 'Presente' ? 'present' : 'absent'">
+                  {{ asistencia.estado }}
+                </span>
+              </span>
             </div>
           </ion-label>
         </ion-item>
