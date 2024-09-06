@@ -1,7 +1,9 @@
 .reports-container {
     padding: 20px;
   }
-  
+  ion-button {
+    z-index: 11;  /* Asegura que el botón esté por encima de todos los demás elementos */
+  }
   h2 {
     font-size: 24px;
     font-weight: bold;

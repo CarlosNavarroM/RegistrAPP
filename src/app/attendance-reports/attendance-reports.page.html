@@ -5,28 +5,48 @@
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Reportes de Asistencia</ion-title>
+    <ion-title>Reportes de Asistencia de Alumnos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="reports-container">
-    <h2>Historial de asistencia por curso</h2>
+    <h2>Historial de Asistencia por Curso</h2>
+    
+    <!-- Filtro por curso -->
+    <ion-item>
+      <ion-label>Cursos</ion-label>
+      <ion-select (ionChange)="filterAttendance($event)" placeholder="Selecciona un curso">
+        <ion-select-option *ngFor="let curso of cursos" [value]="curso">{{ curso.nombre }}</ion-select-option>
+      </ion-select>
+    </ion-item>
 
-    <!-- Acordeón para mostrar cursos del docente -->
-    <ion-list>
-      <ion-item-divider button (click)="toggleSection(0)">
-        <ion-label>Historial de asistencia por curso</ion-label>
-        <ion-icon [name]="expanded ? 'chevron-up-outline' : 'chevron-down-outline'" slot="end"></ion-icon>
-      </ion-item-divider>
-
-      <!-- Lista de cursos -->
-      <ng-container *ngIf="expanded">
-        <ion-item *ngFor="let curso of cursos" (click)="goToAttendanceReports(curso.id)">
-          <ion-label>{{ curso.nombre }}</ion-label>
-          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    <!-- Lista de asistencias por alumno -->
+    <ng-container *ngIf="filteredAttendance.length > 0; else noAttendance">
+      <ion-list>
+        <ion-item-divider color="primary">
+          <ion-label>Asistencia del curso: {{ selectedCourse?.nombre }}</ion-label>
+        </ion-item-divider>
+        
+        <!-- Lista de alumnos y sus asistencias -->
+        <ion-item *ngFor="let alumno of filteredAttendance">
+          <ion-label>
+            {{ alumno.nombre }}
+            <div class="attendance-details">
+              <ion-badge *ngFor="let asistencia of alumno.asistencias" [color]="asistencia.estado === 'Presente' ? 'success' : 'danger'">
+                {{ asistencia.fecha }}: {{ asistencia.estado }}
+              </ion-badge>
+            </div>
+          </ion-label>
         </ion-item>
-      </ng-container>
-    </ion-list>
+      </ion-list>
+    </ng-container>
+
+    <!-- Mensaje si no hay asistencias -->
+    <ng-template #noAttendance>
+      <ion-item>
+        <ion-label>No hay registros de asistencia para este curso.</ion-label>
+      </ion-item>
+    </ng-template>
   </div>
 </ion-content>
