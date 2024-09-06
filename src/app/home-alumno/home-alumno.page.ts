@@ -8,13 +8,12 @@ import { Router } from '@angular/router';
 })
 export class HomeAlumnoPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
   // Método para redirigir a la vista de escaneo QR
   escanearCodigoQR() {
-    // Navega a la vista del código QR
     this.router.navigate(['/scan-qr']);
   }
 
