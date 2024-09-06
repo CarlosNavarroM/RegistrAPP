@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-alumno',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeAlumnoPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  // Método para redirigir a la vista de escaneo QR
+  escanearCodigoQR() {
+    // Navega a la vista del código QR
+    this.router.navigate(['/scan-qr']);
   }
 
+  // Método para redirigir al historial de asistencia del alumno
+  irAlHistorialAsistencia() {
+    this.router.navigate(['/attendance-history']);
+  }
 }
