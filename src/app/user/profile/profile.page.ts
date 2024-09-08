@@ -1,7 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, Platform } from '@ionic/angular';
 import { Subscription } from 'rxjs';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,12 +11,25 @@ import { Subscription } from 'rxjs';
 })
 export class ProfilePage implements OnDestroy {
   private backButtonSubscription: Subscription | null = null;
+  role: string = '';  // Variable para almacenar el rol
 
   constructor(
     private router: Router,
     private alertController: AlertController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private platform: Platform,  // Inyectar Platform para manejar el botón de atrás
+    private utilsSvc: UtilsService  // Inyectar el servicio UtilsService para manejar la limpieza de datos
   ) {}
+
+  ngOnInit() {
+    // Obtener el rol desde el localStorage
+    this.role = this.utilsSvc.getFromLocalStorage('role');
+
+    // Suscribirse al botón físico de atrás (en Android) para manejar el evento
+    this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(10, () => {
+      this.navigateBack();  // Utiliza la función personalizada para regresar
+    });
+  }
 
   navigateToEditProfile() {
     this.router.navigate(['/edit-profile']);
@@ -31,7 +45,6 @@ export class ProfilePage implements OnDestroy {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            // Se cierra el modal sin realizar ninguna acción
             console.log('Cierre de sesión cancelado');
           }
         },
@@ -47,16 +60,25 @@ export class ProfilePage implements OnDestroy {
     await alert.present();
   }
 
-  logout() {
-    // Lógica para cerrar sesión, por ejemplo, eliminar tokens o limpiar datos del usuario
-    console.log('Sesión cerrada exitosamente');
-    this.router.navigate(['/home']);  // Redirige a la página de inicio
+  // Función personalizada para navegar hacia atrás según el rol
+  navigateBack() {
+    if (this.role === 'Docente') {
+      this.navCtrl.navigateRoot(['/home-docente']);
+    } else if (this.role === 'Alumno') {
+      this.navCtrl.navigateRoot(['/home-alumno']);
+    } else {
+      this.router.navigate(['/home']);  // Redirige a home si no hay rol definido
+    }
   }
 
-  // Buena práctica: cerrar cualquier recurso cuando el componente se destruye
+  logout() {
+    this.utilsSvc.clearLocalStorage();  // Limpiar el localStorage para cerrar sesión
+    this.router.navigate(['/login']);  // Redirigir a la página de login
+  }
+
   ngOnDestroy() {
     if (this.backButtonSubscription) {
-      this.backButtonSubscription.unsubscribe();  // Desuscribirse del botón físico de atrás (si existe)
+      this.backButtonSubscription.unsubscribe();  // Limpiar la suscripción al botón de atrás
     }
     console.log('El componente ProfilePage ha sido destruido');
   }

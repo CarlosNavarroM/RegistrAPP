@@ -26,13 +26,18 @@ export class UtilsService {
   routerLink(url: string) {
     this.router.navigateByUrl(url);
   }
+
   // ==================== SaveInLocalStorage ====================
   saveInLocalStorage(key: string, value: any) {
-    return localStorage.setItem('key', JSON.stringify(value));
-    }
+    return localStorage.setItem(key, JSON.stringify(value)); // Usar la clave pasada como argumento
+  }
 
   // ==================== GetFromLocalStorage ====================
   getFromLocalStorage(key: string) {
     return JSON.parse(localStorage.getItem(key));
+  }
+  // ==================== Clear all localStorage ====================
+  clearLocalStorage() {
+    localStorage.clear();  // Limpiar todo el localStorage
   }
 }

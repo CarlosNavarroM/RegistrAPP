@@ -1,10 +1,11 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { User } from 'src/app/models/user.model';
+import { AngularFirestore } from '@angular/fire/compat/firestore'; // Importar Firestore
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,10 @@ import { User } from 'src/app/models/user.model';
 export class LoginPage implements OnInit, OnDestroy {
   loginForm!: FormGroup;
   backButtonSubscription: any;
-  
+
   fireBaseSvc = inject(FirebaseService);
   utilsSvc = inject(UtilsService);
+  firestore = inject(AngularFirestore); // Inyectar Firestore para consultar el rol
 
   constructor(private fb: FormBuilder, private router: Router, private platform: Platform) {}
 
@@ -38,13 +40,32 @@ export class LoginPage implements OnInit, OnDestroy {
       const loading = await this.utilsSvc.loading();
       await loading.present();
 
-      this.fireBaseSvc.signIn(this.loginForm.value as User).then(res => {
+      this.fireBaseSvc.signIn(this.loginForm.value as User).then(async (res) => {
         console.log('Usuario autenticado:', res.user);
-        const email = this.loginForm.get('email')?.value;
-        if (email && email.includes('@docente')) { 
-          this.utilsSvc.routerLink('/home-docente');
+
+        // Obtener el UID del usuario autenticado
+        const uid = res.user?.uid;
+
+        // Consultar el documento del usuario en Firestore
+        const userDoc = await this.firestore.collection('users').doc(uid).get().toPromise();
+
+        if (userDoc.exists) {
+          const userData = userDoc.data() as User; // Mapear los datos a tu modelo User
+
+          // Guardar el rol en localStorage
+          this.utilsSvc.saveInLocalStorage('role', userData.role);
+          this.utilsSvc.saveInLocalStorage('role', userData.role);
+console.log('Rol guardado en localStorage:', userData.role); // Verificar el rol guardado
+
+
+          // Redirigir al usuario según su rol
+          if (userData.role === 'Docente') {
+            this.utilsSvc.routerLink('/home-docente');
+          } else if (userData.role === 'Alumno') {
+            this.utilsSvc.routerLink('/home-alumno');
+          }
         } else {
-          this.utilsSvc.routerLink('/home-alumno');
+          console.error('Documento de usuario no encontrado.');
         }
 
       }).catch(err => {
