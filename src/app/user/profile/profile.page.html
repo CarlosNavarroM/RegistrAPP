@@ -21,8 +21,10 @@
     <ion-avatar class="profile-avatar">
       <img alt="Foto de Perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
     </ion-avatar>
-    <h2>Usuario</h2>
-    <p>usuarioprueba&#64;user.com</p>
+    <h2>{{ user.name }}</h2>
+    <p>{{ user.email }}</p>
+    <p>{{ user.rut }}</p>
+    <p>{{ user.role }}</p>
     
     <ion-button expand="block" fill="outline" (click)="navigateToEditProfile()">Editar Perfil</ion-button>
     

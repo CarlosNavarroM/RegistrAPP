@@ -54,8 +54,8 @@ export class LoginPage implements OnInit, OnDestroy {
 
           // Guardar el rol en localStorage
           this.utilsSvc.saveInLocalStorage('role', userData.role);
-          this.utilsSvc.saveInLocalStorage('role', userData.role);
 console.log('Rol guardado en localStorage:', userData.role); // Verificar el rol guardado
+          this.utilsSvc.saveInLocalStorage('user', userData); // Guardar los datos del usuario en localStorage
 
 
           // Redirigir al usuario según su rol
