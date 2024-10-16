@@ -1,4 +1,12 @@
 
+ion-content {
+    --background: #15141C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
 
   h2 {
     font-size: 24px;
@@ -9,19 +17,40 @@
     font-size: 20px;
     margin-top: 20px;
   }
-  
-  ion-item {
-    --background: #fff;
+
+  ion-list {
     border-radius: 10px;
     margin-top: 10px;
+    background-color: #383349;
+  }
+  
+  ion-item {
+    --background: #383349;
+    border-radius: 10px;
+    margin-top: 10px;
+    color: #ffffff;
   }
   .docente-container {
     padding: 20px;
     position: relative;  /* Asegura que se respete la jerarquía de elementos */
     z-index: 10;  /* Asegura que el contenedor esté por encima de otros elementos */
+    color: #ffffff;
   }
   
  ion-button {
     z-index: 11;  /* Asegura que el botón esté por encima de todos los demás elementos */
+    --background: #6a11cb;
   } 
+
+  ion-toolbar {
+    color: #ffffff;
+    --background: #6a11cb;
+  }
   
+  p {
+    color: #969696;
+  }
+  
+  ion-label {
+    color: #ffffff;
+  }

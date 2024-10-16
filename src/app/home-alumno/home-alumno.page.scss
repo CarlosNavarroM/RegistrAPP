@@ -15,7 +15,7 @@
   }
   
   ion-item {
-    --background: #fff;
+    --background: #383349;
     border-radius: 10px;
     margin-top: 10px;
   }
@@ -23,5 +23,6 @@
   ion-button {
     z-index: 11;  /* Asegura que el botón esté por encima de todos los demás elementos */
     margin-top: 20px;
+    --background: #6a11cb;
   }
   
