@@ -13,6 +13,7 @@
     "@capacitor/barcode-scanner": "^1.0.1",
     "@capacitor/core": "^6.1.2",
     "@ionic/angular": "^8.0.0",
+    "@ionic/core": "^8.3.3",
     "angularx-qrcode": "^18.0.1",
     "firebase": "^10.13.1",
     "html5-qrcode": "^2.3.8",
