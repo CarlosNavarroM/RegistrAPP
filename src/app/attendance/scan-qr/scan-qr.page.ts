@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Html5QrcodeScanner } from 'html5-qrcode';
-import { Platform } from '@ionic/angular'; // Importa Platform para escuchar el botón de retroceso
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-scan-qr',
@@ -11,7 +11,7 @@ export class ScanQrPage {
   qrCodeScanner: Html5QrcodeScanner | undefined;
 
   constructor(private platform: Platform) {
-    // Escuchar evento de retroceso de hardware en Android para detener el escáner
+    // Para detener el escáner al presionar el botón de retroceso en Android
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.stopScan();
     });
@@ -26,22 +26,20 @@ export class ScanQrPage {
 
   onScanSuccess(decodedText: string) {
     console.log(`Código QR escaneado: ${decodedText}`);
-    // Aquí puedes manejar el contenido escaneado
+    // Aquí puedes extraer y manejar el contenido escaneado
   }
 
   onScanFailure(error: any) {
     console.warn(`Error de escaneo: ${error}`);
-    // Manejar errores o reintentos
   }
 
   stopScan() {
     if (this.qrCodeScanner) {
-      this.qrCodeScanner.clear(); // Detiene el escáner
+      this.qrCodeScanner.clear();
       console.log('Escaneo detenido');
     }
   }
 
-  // Detener el escáner cuando la vista se va
   ionViewWillLeave() {
     this.stopScan();
   }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { UtilsService } from '../services/utils.service'; // Servicio que maneja localStorage
+import { UtilsService } from '../services/utils.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +11,23 @@ export class RoleGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const role = this.utilsSvc.getFromLocalStorage('role'); // Obtener el rol desde localStorage
-    const expectedRole = route.data['role']; // Obtener el rol esperado desde la ruta
+    const expectedRole = route.data['role']; // Rol esperado de la ruta
 
-    console.log('Rol obtenido de localStorage:', role); // Log para verificar el rol
-    console.log('Rol esperado para la ruta:', expectedRole); // Log para verificar el rol esperado
+    console.log('Rol obtenido:', role);
+    console.log('Rol esperado:', expectedRole);
+
+    if (state.url === '/login' && role) {
+      // Redirige según el rol si ya está logueado e intenta acceder al login
+      const redirectPath = role === 'Docente' ? '/home-docente' : '/home-alumno';
+      this.router.navigate([redirectPath]);
+      return false;
+    }
 
     if (role === expectedRole) {
-      return true; // Si el rol coincide, permitir el acceso
+      return true;
     } else {
       console.log('Acceso denegado. Redirigiendo a /home');
-      this.router.navigate(['/home']); // Si no coincide, redirigir
+      this.router.navigate(['/home']);
       return false;
     }
   }
