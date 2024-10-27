@@ -27,7 +27,7 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./auth/login/login.module').then(m => m.LoginPageModule),
-    //canActivate: [RoleGuard]
+    canActivate: [RoleGuard]
   },
   {
     path: 'scan-qr',
