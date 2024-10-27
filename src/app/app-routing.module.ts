@@ -1,13 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { RoleGuard } from './guards/role.guard';
+import { RoleGuard } from './guards/role.guard'; // Importar el guard
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
@@ -15,19 +10,18 @@ const routes: Routes = [
   {
     path: 'home-docente',
     loadChildren: () => import('./home-docente/home-docente.module').then(m => m.HomeDocentePageModule),
-    canActivate: [RoleGuard],
-    data: { role: 'Docente' }
+    canActivate: [RoleGuard], // Añadir el guard
+    data: { role: 'Docente' } // Rol esperado
   },
   {
     path: 'home-alumno',
     loadChildren: () => import('./home-alumno/home-alumno.module').then(m => m.HomeAlumnoPageModule),
-    canActivate: [RoleGuard],
+    canActivate: [RoleGuard], 
     data: { role: 'Alumno' }
   },
   {
     path: 'login',
-    loadChildren: () => import('./auth/login/login.module').then(m => m.LoginPageModule),
-    canActivate: [RoleGuard]
+    loadChildren: () => import('./auth/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'scan-qr',
@@ -61,14 +55,23 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./user/profile/profile.module').then(m => m.ProfilePageModule)
   },
+   
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+
   {
     path: 'register',
-    loadChildren: () => import('./auth/register/register.module').then(m => m.RegisterPageModule)
+    loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
   },
+
   {
     path: 'reset-password',
-    loadChildren: () => import('./auth/reset-password/reset-password.module').then(m => m.ResetPasswordPageModule)
+    loadChildren: () => import('./auth/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
   }
+
 ];
 
 @NgModule({
@@ -77,4 +80,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
