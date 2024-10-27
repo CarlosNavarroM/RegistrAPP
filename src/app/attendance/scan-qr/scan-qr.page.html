@@ -8,7 +8,15 @@
 </ion-header>
 
 <ion-content>
-  <ion-button expand="block" (click)="startScan()">
+  <ion-button expand="block" (click)="escanear()">
     Activar Cámara para Escanear
+  </ion-button>
+  <div *ngIf="alumnoAsistencia">
+    <p><strong>Sección:</strong> {{ alumnoAsistencia.seccion }}</p>
+    <p><strong>asignatura:</strong> {{ alumnoAsistencia.asignatura }}</p>
+    <p><strong>Fecha:</strong> {{ alumnoAsistencia.fecha }}</p>
+  </div>
+  <ion-button expand="block" (click)="marcarAsistencia()" [disabled]="!alumnoAsistencia">
+    Registrar Asistencia
   </ion-button>
 </ion-content>
