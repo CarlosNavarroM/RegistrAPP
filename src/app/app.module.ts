@@ -9,8 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // ======= Firebase =======
 import { AngularFireModule } from '@angular/fire/compat';
-import { environment } from 'src/environments/environment.prod';
-
+import { environment } from 'src/enviroments/environment.prod';
 @NgModule({
   declarations: [AppComponent],
   imports: [

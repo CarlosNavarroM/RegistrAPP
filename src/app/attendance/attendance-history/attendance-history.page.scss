@@ -1,36 +1,41 @@
-.attendance-container {
-  padding: 16px;
-  text-align: center;
+// Variables de color
+$background-color: #f4f4f4; // Color de fondo de la tarjeta
+$text-color: #666; // Color del texto
+$primary-color: #007bff; // Color primario (puedes ajustarlo a lo que estés usando)
 
-  h2 {
-    color: var(--ion-color-primary);
-    font-weight: bold;
-    margin-bottom: 20px;
-    font-size: 24px;
+// Estilos generales para ion-card
+ion-card {
+  margin: 10px;
+  border-radius: 8px; // Bordes redondeados
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Sombra suave
+  transition: transform 0.2s; // Animación de escala
+
+  &:hover {
+    transform: scale(1.02); // Efecto de aumento al pasar el mouse
   }
+}
 
-  ion-item {
-    --background: #fff;
-    border-radius: 10px;
-    margin-top: 10px;
-    padding: 10px;
+// Estilos para el encabezado de la tarjeta
+ion-card-header {
+  background-color: $background-color; // Color de fondo
+  padding: 12px; // Espaciado interno
+  border-top-left-radius: 8px; // Bordes redondeados
+  border-top-right-radius: 8px; // Bordes redondeados
+}
+
+// Estilos para el contenido de la tarjeta
+ion-card-content {
+  padding: 12px; // Espaciado interno
+  
+  p {
+    font-size: 14px; // Tamaño de fuente
+    color: $text-color; // Color de texto
   }
+}
 
-  ion-label {
-    h3 {
-      font-size: 18px;
-      font-weight: bold;
-      color: var(--ion-color-dark);
-      margin-bottom: 5px;
-    }
-
-    p {
-      font-size: 14px;
-      color: var(--ion-color-medium);
-    }
-  }
-
-  ion-icon {
-    font-size: 24px;
-  }
+// Estilos para el subtítulo
+ion-card-subtitle {
+  font-size: 12px; // Tamaño de fuente más pequeño
+  color: $primary-color; // Color primario para el subtítulo
+  margin-top: 5px; // Margen superior para separación
 }
