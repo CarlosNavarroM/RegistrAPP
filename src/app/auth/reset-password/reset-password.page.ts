@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -12,7 +14,7 @@ export class ResetPasswordPage implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private toastController: ToastController
+    
   ) { }
 
   ngOnInit() {
@@ -21,17 +23,27 @@ export class ResetPasswordPage implements OnInit {
     });
   }
 
+  firebaseService = inject(FirebaseService);
+  utilsSvc = inject(UtilsService);
+
   async onSubmit() {
     if (this.resetPasswordForm.valid) {
-      const email = this.resetPasswordForm.get('email')?.value;
-      console.log(email);
-      
-      const toast = await this.toastController.create({
-        message: 'Revisa tu bandeja de entrada para continuar con el restablecimiento de la contraseña.',
-        duration: 3000,
-        position: 'bottom'
+      const loading = await this.utilsSvc.loading();
+      await loading.present();
+      this.firebaseService.resetPassword(this.resetPasswordForm.value.email).then(res => {
+      }).catch(err => {
+        console.error(err);
+        this.utilsSvc.presentToast({ 
+          message: err.message, 
+          duration: 2000,
+          color: 'danger',
+          position:'middle',
+          icon: 'close-circle-outline' 
+        });
+      }).finally(() => {
+        loading.dismiss();
       });
-      toast.present();
+
     }
   }
 }
