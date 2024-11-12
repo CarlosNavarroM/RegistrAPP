@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from 'firebase/auth';
 import { User } from '../models/user.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { getFirestore, setDoc, doc, getDoc, addDoc, collection, collectionData, query } from '@angular/fire/firestore';
@@ -22,6 +22,11 @@ export class FirebaseService {
   // ==================== SignUp ====================
   signUp(user: User) {
     return createUserWithEmailAndPassword(getAuth(), user.email, user.password);
+  }
+
+  //=============== Recuperar contraseña ===============
+  resetPassword(email: string) {
+    return sendPasswordResetEmail(getAuth(), email);
   }
   
   // ==================== Update User ====================
